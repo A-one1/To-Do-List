@@ -25,11 +25,22 @@ function App() {
       setNewTask("");
     }
   };
-  const deleteTast = (id) => {};
-  const markDone = (id) => {};
+  const deleteTask = (id) => {
+    let newTasks = toDo.filter((task) => task.id !== id);
+    setToDo(newTasks);
+  };
+  const markDone = (id) => {
+    let newTask = toDo.map((task) => {
+      if (task.id === id) {
+        return { ...task, status: !task.status };
+      }
+      return task;
+    });
+    setToDo(newTask);
+  };
   const cancelUpdate = () => {};
   const changeTask = (e) => {};
-  const updateTast = () => {};
+  const updateTask = () => {};
 
   return (
     <div className="container App ">
@@ -84,15 +95,26 @@ function App() {
                         <span className="taskText">{task.title}</span>
                       </div>
                       <div className="iconsWrap">
-                        <span>
-                          <FontAwesomeIcon icon={faCircleCheck}
-                          
-                          />
+                        <span
+                          title="markDone"
+                          onClick={(e) => markDone(task.id)}
+                        >
+                          <FontAwesomeIcon icon={faCircleCheck} />
                         </span>
-                        <span>
-                          <FontAwesomeIcon icon={faPen} />
-                        </span>
-                        <span>
+
+                        {task.status ? null : (
+                          <span
+                            title="Edit"
+                            onClick={(e) => updateTask(task.id)}
+                          >
+                            <FontAwesomeIcon icon={faPen} />
+                          </span>
+                        )}
+
+                        <span
+                          title="Delete"
+                          onClick={() => deleteTask(task.id)}
+                        >
                           <FontAwesomeIcon icon={faTrashCan} />
                         </span>
                       </div>
