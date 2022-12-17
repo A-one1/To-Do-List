@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -7,14 +7,26 @@ import UpdateForm from "./components/UpdateForm";
 import ToDo from "./components/ToDo";
 
 function App() {
+  // const [local, setLocal] = useState(() => {
+  //   const savedTodos = localStorage.getItem("local");
+  //   if (savedTodos) {
+  //     return JSON.parse(savedTodos);
+  //   } else {
+  //     return [];
+  //   }
+  // }); 
+  // console.log(local);
+
   const [toDo, setToDo] = useState([]);
-  const [newTask, setNewTask] = useState('');
-  const [updateData, setUpdateData] = useState('');
+  const [newTask, setNewTask] = useState("");
+  const [updateData, setUpdateData] = useState("");
+
   const addTask = () => {
     if (newTask) {
       let num = toDo.length + 1;
       let newEntry = { id: num, title: newTask, status: false };
       setToDo([...toDo, newEntry]);
+      // localStorage.setItem("local", JSON.stringify(newEntry));
       setNewTask("");
     }
   };
@@ -56,7 +68,6 @@ function App() {
           <br />
           <h2>To Do List</h2>
           <br />
-
           <br />
 
           {updateData ? (
