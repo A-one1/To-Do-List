@@ -1,3 +1,6 @@
+To-Do List
+This project is a basic to-do list built using JavaScript. It allows users to add, edit, update, and delete tasks as needed.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
